@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/Custom/CustomScripts.js"></script>
+
+<div class="login-page">
+    <!-- Formulario de ingreso al sistema -->
+    <div class="container-login">
+        <div class="form-login">
+            <h1>Iniciar Sesión</h1>
+            <form action="#" method="post" class="form-group" id="login-form" autocomplete="off">
+                <div class="alert-danger error-message" style="display:none"></div>
+                <ul>
+                    <li>
+                        <input type="text" id="username" class="required-input" placeholder="Correo Electrónico" />
+                    </li>
+                    <li>
+                        <input type="password" id="user_password" class="required-input" placeholder="Contraseña" />
+                    </li>
+                </ul>
+                <div class="btn-cont">
+                    <button type="submit" href="#">Ingresar.</button>
+                </div>  
+            </form>
+        </div>
+    </div>
+    <!-- Consulta de paquetes por documento -->
+    <div class="searchSendPackages">
+        <div class="container-searchPacks">
+            <h3>¡Consulte sus envíos aquí!</h3>
+            <form action="#" id="searchPacksForm" method="post" autocomplete="off">
+                <div class="alert-danger error-message" style="display:none"></div>
+                <ul>
+                    <li><input type="text" class="required-input" id="searchPacks" name="searchPacks" placeholder="Número de documento"></li>
+                    <li><button type="submit">Consultar</button></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="toast" style="display: none">
+    <span class="close_toast">x</span>
+    <h4 id="toast_title"></h4>
+    <div class="toast_body"></div>
+</div>
