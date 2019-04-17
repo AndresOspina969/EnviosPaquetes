@@ -24,12 +24,26 @@
     <script src="~/Scripts/Custom/CustomScripts.js"></script>
 
     <div class="container body-content">
+        @if(Session["USER_DATA"] != null){
+            Dictionary<String, Object> SessionData = (Dictionary<String, Object>) Session["USER_DATA"];            
+            var Auth = (bool)SessionData["IsAuth"];
+            if(Auth){
+                @Html.Partial("NavBar", new ViewDataDictionary(this.Vi‌​ewData) {
+                    {
+                      "DataUser", SessionData 
+                    },
+                    {
+                      "MenuOptions" , SessionData
+                    } 
+                });
+            }
+        }
         @RenderBody()
     </div>
 
     <footer class="page-footer footer">
       <div class="footer-content">
-        <span>© @DateTime.Now.Year Copyright.</span>
+        <span>© @DateTime.Now.Year</span>
       </div>
     </footer>
 </body>

@@ -1,0 +1,31 @@
+﻿@{
+    var DataUser = (Dictionary<String, Object>) ViewData["DataUser"];
+    var OptionsMenu = (List<List<Dictionary<String, Object>>>) DataUser["OptionsUser"];
+}
+
+<nav class="navbar navbar-default">
+    <div class="nav navbar-nav navbar-left">
+      <img src="~/Content/Img/icono.png" alt="Icono">
+    </div>
+    <ul class="nav navbar-nav">
+      @foreach(var option in OptionsMenu){
+        foreach(var menuOption in option){
+          var link = (Dictionary<String, Object>) menuOption;
+          <li><a href='@Html.Raw(link["LinkURL"])'>@Html.Raw(link["LinkText"])</a></li>
+        }
+      }
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-user"></span>  @Html.Raw(DataUser["NombreUsuario"]) <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href='~/User/ChangePassword/@Html.Raw(DataUser["IdUsuario"])'>Cambiar contraseña.</a></li>
+          <li><a href='~/User/UpdateUser/@Html.Raw(DataUser["IdUsuario"])'>Configuración de usuario.</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="~/User/LogOut">Cerrar Sesión</a></li>
+        </ul>
+      </li>
+    </ul>
+</nav>

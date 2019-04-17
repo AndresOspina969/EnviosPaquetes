@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -49,6 +50,9 @@ namespace AplicacionEnvioPaquetes.Controllers
                         user_data.Add("NombreUsuario", dataUser["Nombre"].ToString());
                         user_data.Add("IdUsuario", int.Parse(dataUser["Id"].ToString()));
                         user_data.Add("RolName", dataUser["RolName"].ToString());
+
+                        List<List<Dictionary<String, Object>>> user_options = Usuarios.GetOptionsByRole(int.Parse(dataUser["Rol"].ToString()));
+                        user_data.Add("OptionsUser", user_options);
 
                         Session.Add("USER_DATA", user_data);
 

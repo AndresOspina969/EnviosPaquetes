@@ -86,5 +86,39 @@ namespace Datos
 
             return usrList;
         }
+
+        //Obtener listado de opciones de menu por rol de usuario
+        public static List<List<Dictionary<String, Object>>> GetOptionsByRole(int Role)
+        {
+            List<List<Dictionary<String, Object>>> list = new List<List<Dictionary<String, Object>>>();
+
+            switch(Role)
+            {
+                // Administrador
+                case 1:
+                    list.Add(new List<Dictionary<String, Object>> {
+                        new Dictionary<String, Object>() { { "LinkText", "Usuarios" } , { "LinkURL" , "/User/" } },
+                        new Dictionary<String, Object>() { { "LinkText", "Tarifas" } , { "LinkURL" , "/Tarifa/" } }
+                    });
+                    
+                    break;
+                // Operador
+                case 2:
+                    list.Add(new List<Dictionary<String, Object>> {
+                        new Dictionary<String, Object>() { { "LinkText", "Envíos" } , { "LinkURL" , "/Envios/" } }
+                    });
+                    break;
+                // Mensajero
+                case 3:
+                    list.Add(new List<Dictionary<String, Object>> {
+                        new Dictionary<String, Object>() { { "LinkText", "Entregas" } , { "LinkURL" , "/Entregas/" } }
+                    });
+                    break;
+                default:
+                    return null;
+            }
+
+            return list;
+        }
     }
 }
