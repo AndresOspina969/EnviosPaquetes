@@ -59,6 +59,13 @@
         }
     });
 
+    $("#searchPacks").on("keypress keyup blur",function (event) {    
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
     //Consulta de paquetes por cliente
     $("#searchPacksForm").on("submit", function (e) {
         e.preventDefault();
@@ -107,6 +114,27 @@
                     console.log(xhr);
                 }
             });
+        }
+    });
+
+    //------------
+    $("#table-dinamic").DataTable({
+        dom: 'Bfrtip',
+        buttons: [],
+        "pagingType": "full_numbers",
+        "language": {
+            "search": "Busqueda:",
+            "paginate": {
+                "previous": "Anterior",
+                "next": "Siguiente",
+                "first" : "Primera",
+                "last" : "Ultima"
+            },
+            "lengthMenu": "",
+            "zeroRecords": "No existen datos de acuerdo a su busqueda.",
+            "info": "Cantidad de registros: _MAX_",
+            "infoEmpty": "No se han encontrado registros.",
+            "infoFiltered": ""
         }
     });
 

@@ -8,16 +8,29 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href="~/Content/jquery-tables.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Styles.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    <script src="~/Scripts/Custom/jquery-tables.js"></script>
+    <script src="~/Scripts/Custom/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/Custom/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/Custom/CustomScripts.js"></script>
+
     <div class="container body-content">
         @RenderBody()
     </div>
 
+    <footer class="page-footer footer">
+      <div class="footer-content">
+        <span>© @DateTime.Now.Year Copyright.</span>
+      </div>
+    </footer>
 </body>
 </html>

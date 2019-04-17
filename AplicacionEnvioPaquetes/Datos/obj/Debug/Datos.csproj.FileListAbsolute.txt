@@ -13,3 +13,18 @@ C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\D
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.csproj.CopyComplete
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.dll
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.pdb
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\Datos.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\Datos.pdb
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.Entity.EF5.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Web.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.xml
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.Entity.EF5.xml
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\bin\Debug\MySql.Web.xml
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.csprojAssemblyReference.cache
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.csproj.CopyComplete
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Datos\obj\Debug\Datos.pdb

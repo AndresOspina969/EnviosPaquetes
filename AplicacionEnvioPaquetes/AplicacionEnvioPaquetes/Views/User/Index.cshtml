@@ -1,7 +1,15 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    var Usuarios = ViewBag.Usuarios;
 }
 
 <h2>Index</h2>
+<a href="~/User/LogOut">Cerrar Sesión.</a>
+
+
+@foreach (var user in Usuarios)
+{
+	@Html.Raw(user["Id"])
+}
 

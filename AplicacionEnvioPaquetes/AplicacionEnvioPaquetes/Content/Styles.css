@@ -165,31 +165,34 @@
 	font-size: 	14px;	
 }
 /* ------------------------------------------ */
-table{
+.dataTables_filter{
+	float: left !important;
+	padding-bottom: 12px;
+}
+.dataTables_filter input{
+	border: 1px solid #8c8c8c;
+	padding: 5px 8px 6px 8px;
+	font-style: normal;
+	border-radius: 18px;
+	outline: none;
+}
+.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #d6e9f8;
+    text-align: left;
+    border: 1px solid #ccc;
+    font-size: 11px;
+    padding: 4px;
+    color: #333;
+}
+/* Footer */
+.footer{
+	position: absolute; bottom: 0px;
+	padding: 15px 8px 20px 15px;
+	text-align: center; 
+	background-color: rgba(0,0,0,.65);
 	width: 100%;
-	margin: 10px auto;
-	border: 1px solid #444;
-	padding: 5px 8px 10px 2px;
 }
-table thead{
-	background-color: #F7B733;
-}
-table thead tr th{
-	text-align-last: center;
-	padding: 5px 3px 8px 3px;
-	color: #eee;
-	font-size: 12px;
-	border-left: 1px solid #fff;
-}
-table thead tr th:first-child, table tbody tr td:first-child{
-	border:none;
-}
-table tbody tr td{
-	text-align-last: center;
-	padding: 5px 3px 8px 3px;
-	font-size: 12px;
-	border-left: 1px solid #9c9c9c;
-}
-table tbody tr:nth-child(even){
-	background-color: #FBE1AA;
+.footer-content{
+	text-align: center;
+	color: #fff;
 }

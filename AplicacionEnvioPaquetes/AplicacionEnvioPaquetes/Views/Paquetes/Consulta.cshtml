@@ -1,12 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Consulta";
+    ViewBag.Title = "Consulta de envíos";
     var Paquetes = ViewBag.Paquetes;
 }
 
-<h2>Consulta de envíos.</h2>
+<div class="row">
+    <div class="col-md-18">
+        <h2>Consulta de envíos.</h2>
+        <div class="btn-group">
+            <a href="/" class="btn btn-info">
+                <i class="glyphicon glyphicon-home" aria-hidden="true"></i> Volver al inicio.
+            </a>
+        </div>
+    </div>
+</div>
 
-<table border="0" cellpadding="0" cellspacing="1">
+<br><br>
+
+<table id="table-dinamic" class="table table-striped" style="width:100%">
     <thead>
         <tr>
             <th>Descripción</th>
@@ -23,17 +34,17 @@
     <tbody>
         @foreach (var paquete in Paquetes)
         {
-        <tr>
-            <td>@Html.Raw(paquete["Descripcion"])</td>
-            <td>@Html.Raw(paquete["NombreRemitente"])</td>
-            <td>@Html.Raw(paquete["NombreDestinatario"])</td>
-            <td>@Html.Raw(paquete["CiudadOrigen"])</td>
-            <td>@Html.Raw(paquete["CiudadDestino"])</td>
-            <td>$ @Html.Raw(paquete["Valor"])</td>
-            <td>@Html.Raw(paquete["Fecha_Registro"])</td>
-            <td>@Html.Raw(paquete["Fecha_Entrega"])</td>
-            <td>@Html.Raw(paquete["Estado"])</td>
-        </tr>
+            <tr>
+                <td>@Html.Raw(paquete["Descripcion"])</td>
+                <td>@Html.Raw(paquete["NombreRemitente"])</td>
+                <td>@Html.Raw(paquete["NombreDestinatario"])</td>
+                <td>@Html.Raw(paquete["CiudadOrigen"])</td>
+                <td>@Html.Raw(paquete["CiudadDestino"])</td>
+                <td>$ @Html.Raw(paquete["Valor"])</td>
+                <td>@Html.Raw(paquete["Fecha_Registro"])</td>
+                <td>@Html.Raw(paquete["Fecha_Entrega"])</td>
+                <td>@Html.Raw(paquete["Estado"])</td>
+            </tr>
         }
     </tbody>
 </table>

@@ -18,8 +18,7 @@ namespace AplicacionEnvioPaquetes.Controllers
         [HttpGet]
         public ActionResult Consulta(String Documento)
         {
-            var packs = Paquetes.GetPacksByClient(Documento);
-            ViewBag.Paquetes = packs;
+            ViewBag.Paquetes = Paquetes.GetPacksByClient(Documento);
             return View();
         }
     }

@@ -16,7 +16,15 @@ namespace AplicacionEnvioPaquetes.Controllers
             {
                 Dictionary<String, Object> user_data = (Dictionary<String, Object>)Session["USER_DATA"];
                 if (bool.Parse(user_data["IsAuth"].ToString()))
-                    return Redirect("~/User/Index/");
+                    switch(user_data["RolName"].ToString())
+                    {
+                        case "Administrador":
+                            return Redirect("~/User/Index/");
+                        default:
+                            Session["USER_DATA"] = null;
+                            return Redirect("~/Home/Index/");
+                    }
+                    
             }
 
             return View();
