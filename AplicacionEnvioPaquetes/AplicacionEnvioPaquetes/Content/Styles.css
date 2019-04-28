@@ -7,6 +7,7 @@ body{
 	padding-bottom: 80px;
 	margin-top: 30px;
 }
+/* --------------------------- */
 .login-page{
 	position: absolute;
 	top: 0;
@@ -50,6 +51,13 @@ body{
 	margin-bottom: 8px;
 	background-color: #F3766B;
 	border: 1px solid #e32;
+	color: #fff;
+	padding: 2px 5px 6px 3px;
+}
+.success-message{
+	margin-bottom: 8px;
+	background-color: #48D826;
+	border: 1px solid #26920D;
 	color: #fff;
 	padding: 2px 5px 6px 3px;
 }
@@ -188,6 +196,56 @@ body{
     padding: 4px;
     color: #333;
 }
+.table tr th, .table tr td
+{
+	text-align: center !important;
+	width: 160px !important;
+	height: 15px !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+}
+.table tr td{
+	max-width: 190px;
+}
+/* ------------------------------------- */
+.form-group-container {
+	position: relative;
+}
+.form-group-container li{
+	list-style: none;
+	padding: 3px 5px 8px 12px;
+	width: 49%;	
+}
+.form-group-container li .form-group{
+	width: 100% !important;
+}
+.form-group-container li .form-group .form-control{
+	width: 100% !important;
+	max-width: 420px;
+}
+.form-group-container li:nth-child(odd){
+	float: left;
+	border-right: 1px solid #d9d9d9;
+}
+.form-group-container li:nth-child(even){
+	float: right;
+}
+form .btn-group{
+	float: right;
+	margin-top: 20px;
+}
+form h6{
+	padding: 2px 2px 10px 10px;
+	color: #e32;	
+}
+/* ------ */
+.required-label:after{
+	content: '*';
+	position: relative;
+	font-size: 18px;
+	color: #e32;
+}
 /* NavBar */
 .navbar{
 	position: fixed;
@@ -205,14 +263,13 @@ body{
 .navbar-nav li a{
 	color: #fff !important;
 }
-.navbar-nav li a:hover, .navbar-nav li a:focus{
+.navbar-nav li a:hover, .navbar-nav li a:focus, .current_link{
 	background-color: #F9C967 !important;
+	border-bottom: 3px solid #eee;
 }
 .dropdown-menu li a{
 	color: #464646 !important;
 }
-
-
 /* Footer */
 .footer{
 	position: fixed; 
@@ -221,6 +278,7 @@ body{
 	text-align: center; 
 	background-color: rgba(0,0,0,.65);
 	width: 100%;
+	z-index: 99999999999999;
 }
 .footer-content{
 	text-align: center;

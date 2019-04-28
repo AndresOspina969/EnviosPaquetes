@@ -109,6 +109,10 @@ C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\A
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\obj\Debug\AplicacionEnvioPaquetes.csproj.CopyComplete
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\obj\Debug\AplicacionEnvioPaquetes.dll
 C:\Users\Juan Andrés\Desktop\Projects\Envios Paquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\obj\Debug\AplicacionEnvioPaquetes.pdb
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.Compression.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.ValueTuple.dll
+C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\VBCSCompiler.exe
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\ApplicationInsights.config
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\AplicacionEnvioPaquetes.dll.config
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\AplicacionEnvioPaquetes.dll
@@ -135,12 +139,10 @@ C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Ap
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Console.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.Compression.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.Pipes.AccessControl.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.IO.Pipes.dll
-C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Security.Claims.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Security.Cryptography.Algorithms.dll
@@ -149,7 +151,6 @@ C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Ap
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Security.Principal.Windows.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.ValueTuple.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Xml.ReaderWriter.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Xml.XmlDocument.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\System.Xml.XPath.dll
@@ -157,7 +158,6 @@ C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\Ap
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\vbc.exe
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\vbc.exe.config
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\vbc.rsp
-C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\VBCSCompiler.exe
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\Antlr3.Runtime.dll
 C:\Users\Juan Andrés\Desktop\Projects\EnviosPaquetes\AplicacionEnvioPaquetes\AplicacionEnvioPaquetes\bin\Datos.dll

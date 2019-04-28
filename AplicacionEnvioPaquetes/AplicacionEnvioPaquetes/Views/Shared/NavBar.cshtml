@@ -11,7 +11,13 @@
       @foreach(var option in OptionsMenu){
         foreach(var menuOption in option){
           var link = (Dictionary<String, Object>) menuOption;
-          <li><a href='@Html.Raw(link["LinkURL"])'>@Html.Raw(link["LinkText"])</a></li>
+          var actualController = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+          var classLink = "";
+
+          if(link["LinkID"].ToString() == actualController)
+            classLink = "current_link";
+
+          <li><a href='@Html.Raw(link["LinkURL"])' class='@Html.Raw(classLink)'>@Html.Raw(link["LinkText"])</a></li>
         }
       }
     </ul>
@@ -21,8 +27,8 @@
           <span class="glyphicon glyphicon-user"></span>  @Html.Raw(DataUser["NombreUsuario"]) <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href='~/User/ChangePassword/@Html.Raw(DataUser["IdUsuario"])'>Cambiar contraseña.</a></li>
-          <li><a href='~/User/UpdateUser/@Html.Raw(DataUser["IdUsuario"])'>Configuración de usuario.</a></li>
+          <li><a href='~/User/ChangePassword'>Cambiar contraseña.</a></li>
+          <li><a href='~/User/UpdateUser'>Configuración de usuario.</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="~/User/LogOut">Cerrar Sesión</a></li>
         </ul>

@@ -138,5 +138,101 @@
         }
     });
 
+    // ---------------------------------------------
+    // Validaciones de formulario de registro de usuarios
+
+    $("#form-singup").on("submit", function(e){
+        e.preventDefault();
+        var form = $(this);
+
+        var errMsg = $(this).find(".error-message");
+        var succMsg = $(this).find(".success-message");
+
+        errMsg.hide();
+        succMsg.hide();
+
+        var countErr = 0;
+        var err = false;
+
+        $(".required-label").each(function(){
+
+            var container = $(this).parent();
+            var el = $(container).find(".form-control");
+
+            var type = el[0].tagName;
+            if(type == "INPUT"){
+                if($(el).val() == "" || $(el).val().length == 0){
+                    countErr++;
+                }else{
+                    if($(el).attr("emailVal") != undefined){
+                        if(!validateEmailStructure($(el).val())){
+                            err = true;
+                        }
+                    }
+                }
+            }else if(type = "SELECT"){
+                if($(el).val() == "no-value" || $(el).val() == 0){
+                    countErr++;
+                }
+            }
+        });
+
+        if(countErr != 0 && !err){
+            errMsg.fadeIn(250).html("Complete los campos requeridos.");
+        }else if(err){
+            errMsg.fadeIn(250).html("Formato incorrecto del correo electrónico.");
+        }else if($("#Contrasenia").val() != $("#VerificacionContrasenia").val() ){
+            errMsg.fadeIn(250).html("Las contraseñas no coinciden.");
+        }else{
+            var urlService = "/User/SignUp/";
+            var dataSend = {
+                data: JSON.stringify( $(form).serializeArray() )
+            };
+
+            $.ajax({
+                url : urlService,
+                type: "POST",
+                data: dataSend,
+                dataType: "json",
+                success: function (response) {
+                    if (response.success != undefined) {
+                        succMsg.fadeIn(250).html("Usuario registrado satisfactoriamente.");
+
+                        setTimeout(function(){
+                            window.location = "/User/Index/";
+                        }, 860);
+                    }else{
+                        errMsg.fadeIn(250).html(response.error);
+                    }
+                },
+                error : function(err, xhr){
+                    errMsg.fadeIn(250).html("Ha ocurrido un error.");
+                    console.log(xhr);
+                }
+            });
+
+        }
+    });
+
+    var validateEmailStructure = function(text){
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(text).toLowerCase());
+    };
+
 });
+
+function validateNumber(){
+    var code = this.event.keyCode;
+    if ((code<48||code>57)
+      && code!==46 
+      && code!==8 
+      && code!==9
+      && code!==37
+      && code!==39)
+    {
+        this.event.preventDefault();        
+    }
+}
+
+
 

@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Registro de usuarios.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Roles = ViewBag.Roles;
+}
+
+<div class="row">
+    <div class="col-md-18">
+        <h2>Nuevo usuario.</h2>
+        <div class="btn-group">
+            <a href="javascript:history.back()" class="btn btn-info">
+                <i class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i> Regresar.
+            </a>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<form action="#" autocomplete="off" method="POST" id="form-singup">
+    <h6>Campos requeridos *</h6>
+    <span class="error-message" style="display:none"></span>
+    <span class="success-message" style="display:none"></span>
+    <br>
+
+    <ul class="form-group-container">
+        <li>
+            <div class="form-group">
+                <label for="NombreUsuario" class="required-label control-label">Nombre:</label>
+                <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario">
+            </div>
+            <div class="form-group">
+                <label for="ApellidoUsuario" class="required-label control-label">Apellidos:</label>
+                <input type="text" class="form-control" id="ApellidoUsuario" name="ApellidoUsuario">
+            </div>
+            <div class="form-group">
+                <label for="Documento" class="required-label control-label">Documento:</label>
+                <input type="text" class="form-control" id="Documento" name="Documento" onkeydown="validateNumber(this)">
+            </div>
+            <div class="form-group">
+                <label for="EmailUsuario" class="required-label control-label">Correo electrónico:</label>
+                <input type="text" emailVal="true" class="form-control" id="EmailUsuario" name="EmailUsuario">
+            </div>
+        </li>
+        <li>
+            <div class="form-group">
+                <label for="TelefonoUsuario" class="control-label">Teléfono:</label>
+                <input type="text" class="form-control" id="TelefonoUsuario" name="TelefonoUsuario" onkeydown="validateNumber(this)">
+            </div>
+            <div class="form-group">
+                <label for="RolUsuario" class="required-label control-label">Perfil:</label>
+                <select name="RolUsuario" id="RolUsuario" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach(var rol in Roles)
+                    {
+                        <option value='@Html.Raw(rol["Id"])'>@Html.Raw(rol["Nombre"])</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Contrasenia" class="required-label control-label">Contraseña:</label>
+                <input type="password" class="form-control" id="Contrasenia" name="Contrasenia">
+            </div>
+            <div class="form-group">
+                <label for="VerificacionContrasenia" class="required-label control-label">Verificación de contraseña:</label>
+                <input type="password" class="form-control" id="VerificacionContrasenia">
+            </div>            
+        </li>
+    </ul>
+    <div class="btn-group"> 
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></i> Guardar
+        </button>
+    </div>
+</form>
+

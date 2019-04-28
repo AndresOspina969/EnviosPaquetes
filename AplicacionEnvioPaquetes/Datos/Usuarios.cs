@@ -35,7 +35,7 @@ namespace Datos
                     usr.Add("HashKey", rd.GetString("HashKey"));
                     usr.Add("PasswordUser", rd.GetString("PasswordUser"));
                     usr.Add("RolName", rd.GetString("RolName"));
-                    usr.Add("Rol", int.Parse(rd.GetString("Rol")));
+                    usr.Add("Rol", int.Parse(rd.GetString("Rol")));                    
                     usr.Add("EstadoUsuario", rd.GetString("EstadoUsuario"));
                     usr.Add("IdEstadoUsuario", int.Parse(rd.GetString("IdEstadoUsuario")));
                 }
@@ -70,9 +70,10 @@ namespace Datos
                     {
                         { "Id", int.Parse(rd.GetString("Id")) },
                         { "NombreUsuario", rd.GetString("NombreUsuario") },
-                        { "Documento", int.Parse(rd.GetString("Documento")) },
+                        { "Documento", rd.GetString("Documento")},
                         { "Email", rd.GetString("Email") },
                         { "Rol", rd.GetString("Rol") },
+                        { "IdEstado", int.Parse(rd.GetString("IdEstado")) },
                         { "Estado", rd.GetString("Estado") }
                     };
 
@@ -97,21 +98,21 @@ namespace Datos
                 // Administrador
                 case 1:
                     list.Add(new List<Dictionary<String, Object>> {
-                        new Dictionary<String, Object>() { { "LinkText", "Usuarios" } , { "LinkURL" , "/User/" } },
-                        new Dictionary<String, Object>() { { "LinkText", "Tarifas" } , { "LinkURL" , "/Tarifa/" } }
+                        new Dictionary<String, Object>() { { "LinkText", "Usuarios" } , { "LinkURL" , "/User/" } , { "LinkID" , "User" }},
+                        new Dictionary<String, Object>() { { "LinkText", "Tarifas" } , { "LinkURL" , "/Tarifa/" } , { "LinkID", "Tarifa" } }
                     });
                     
                     break;
                 // Operador
                 case 2:
                     list.Add(new List<Dictionary<String, Object>> {
-                        new Dictionary<String, Object>() { { "LinkText", "Envíos" } , { "LinkURL" , "/Envios/" } }
+                        new Dictionary<String, Object>() { { "LinkText", "Envíos" } , { "LinkURL" , "/Envios/" } , { "LinkID" , "Envios" } }
                     });
                     break;
                 // Mensajero
                 case 3:
                     list.Add(new List<Dictionary<String, Object>> {
-                        new Dictionary<String, Object>() { { "LinkText", "Entregas" } , { "LinkURL" , "/Entregas/" } }
+                        new Dictionary<String, Object>() { { "LinkText", "Entregas" } , { "LinkURL" , "/Entregas/" } , { "LinkID", "Entregas" } }
                     });
                     break;
                 default:
@@ -119,6 +120,69 @@ namespace Datos
             }
 
             return list;
+        }
+
+        //Retornar listado de roles de usuario
+        public static ArrayList GetUserRoles()
+        {
+            ArrayList roles = new ArrayList();
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("GetUserRoles", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    var usr = new Dictionary<String, Object>
+                    {
+                        { "Id", int.Parse(rd.GetString("Id")) },
+                        { "Nombre", rd.GetString("Nombre") }
+                    };
+
+                    roles.Add(usr);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+            return roles;
+        }
+
+        //Insertar nuevos usuarios
+        public static Boolean InsertUser(Dictionary<String, Object> datosUsuario)
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("InsertUser", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@NombreUsuario", datosUsuario["NombreUsuario"]);
+                cmd.Parameters.AddWithValue("@ApellidoUsuario", datosUsuario["ApellidoUsuario"]);
+                cmd.Parameters.AddWithValue("@Documento", datosUsuario["Documento"]);
+                cmd.Parameters.AddWithValue("@EmailUsuario", datosUsuario["EmailUsuario"]);
+                cmd.Parameters.AddWithValue("@Contrasenia", datosUsuario["Contrasenia"]);
+                cmd.Parameters.AddWithValue("@TelefonoUsuario", datosUsuario["TelefonoUsuario"]);
+                cmd.Parameters.AddWithValue("@RolUsuario", datosUsuario["RolUsuario"]);
+                cmd.Parameters.AddWithValue("@HashKey", datosUsuario["HashKey"]);
+
+                if(cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+            return false;
         }
     }
 }
