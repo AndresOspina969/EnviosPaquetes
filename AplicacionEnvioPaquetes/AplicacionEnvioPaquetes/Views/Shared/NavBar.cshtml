@@ -17,7 +17,9 @@
           if(link["LinkID"].ToString() == actualController)
             classLink = "current_link";
 
-          <li><a href='@Html.Raw(link["LinkURL"])' class='@Html.Raw(classLink)'>@Html.Raw(link["LinkText"])</a></li>
+          <li>
+            <a href='@Html.Raw(link["LinkURL"])' class='@Html.Raw(classLink)'>@Html.Raw(link["LinkText"])</a>
+          </li>
         }
       }
     </ul>

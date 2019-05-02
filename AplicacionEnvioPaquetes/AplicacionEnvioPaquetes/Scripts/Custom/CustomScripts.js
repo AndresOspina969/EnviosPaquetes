@@ -200,7 +200,80 @@
 
                         setTimeout(function(){
                             window.location = "/User/Index/";
-                        }, 860);
+                        }, 1260);
+                    }else{
+                        errMsg.fadeIn(250).html(response.error);
+                    }
+                },
+                error : function(err, xhr){
+                    errMsg.fadeIn(250).html("Ha ocurrido un error.");
+                    console.log(xhr);
+                }
+            });
+
+        }
+    });
+
+    // Validaciones de formulario de modificación de usuarios
+
+    $("#form-updateUser").on("submit", function(e){
+        e.preventDefault();
+        var form = $(this);
+
+        var errMsg = $(this).find(".error-message");
+        var succMsg = $(this).find(".success-message");
+
+        errMsg.hide();
+        succMsg.hide();
+
+        var countErr = 0;
+        var err = false;
+
+        $(".required-label").each(function(){
+
+            var container = $(this).parent();
+            var el = $(container).find(".form-control");
+
+            var type = el[0].tagName;
+            if(type == "INPUT"){
+                if($(el).val() == "" || $(el).val().length == 0){
+                    countErr++;
+                }else{
+                    if($(el).attr("emailVal") != undefined){
+                        if(!validateEmailStructure($(el).val())){
+                            err = true;
+                        }
+                    }
+                }
+            }else if(type = "SELECT"){
+                if($(el).val() == "no-value" || $(el).val() == 0){
+                    countErr++;
+                }
+            }
+        });
+
+        if(countErr != 0 && !err){
+            errMsg.fadeIn(250).html("Complete los campos requeridos.");
+        }else if(err){
+            errMsg.fadeIn(250).html("Formato incorrecto del correo electrónico.");
+        }else{
+            var urlService = "/User/UpdateUser/";
+            var dataSend = {
+                data: JSON.stringify( $(form).serializeArray() )
+            };
+
+            $.ajax({
+                url : urlService,
+                type: "POST",
+                data: dataSend,
+                dataType: "json",
+                success: function (response) {
+                    if (response.success != undefined) {
+                        succMsg.fadeIn(250).html("Usuario modificado satisfactoriamente.");
+
+                        setTimeout(function(){
+                            window.location = "/User/Index/";
+                        }, 1260);
                     }else{
                         errMsg.fadeIn(250).html(response.error);
                     }

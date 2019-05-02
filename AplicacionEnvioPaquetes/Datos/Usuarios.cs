@@ -48,6 +48,37 @@ namespace Datos
             return usr;
         }
 
+        // Obtener información de usuario para comparación en cambio de contraseña
+        public static Dictionary<String, Object> GetInfoUserSession(int IdUser)
+        {
+            var usr = new Dictionary<String, Object>();
+
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("GetInfoUserSession", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@IdUser", IdUser);
+
+                MySqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    usr.Add("Id", int.Parse(rd.GetString("Id")));
+                    usr.Add("HashKey", rd.GetString("HashKey"));
+                    usr.Add("PasswordUser", rd.GetString("PasswordUser"));
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return usr;
+        }
+
         //Obtener listado de todos los usuarios registrados
         public static ArrayList GetListUsers(int idUser)
         {
@@ -154,6 +185,38 @@ namespace Datos
             return roles;
         }
 
+        //Retornar listado de estados de usuario
+        public static ArrayList GetStatusList()
+        {
+            ArrayList status = new ArrayList();
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("GetStatusList", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                MySqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    var usr = new Dictionary<String, Object>
+                    {
+                        { "Id", int.Parse(rd.GetString("Id")) },
+                        { "Nombre", rd.GetString("Nombre") }
+                    };
+
+                    status.Add(usr);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
+            return status;
+        }
+
         //Insertar nuevos usuarios
         public static Boolean InsertUser(Dictionary<String, Object> datosUsuario)
         {
@@ -183,6 +246,101 @@ namespace Datos
 
 
             return false;
+        }
+
+        //Modificar usuarios
+        public static Boolean UpdateUser(Dictionary<String, Object> datosUsuario)
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("UpdateUser", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", datosUsuario["IdUsuario"]);
+                cmd.Parameters.AddWithValue("@NombreUsuario", datosUsuario["NombreUsuario"]);
+                cmd.Parameters.AddWithValue("@ApellidoUsuario", datosUsuario["ApellidoUsuario"]);
+                cmd.Parameters.AddWithValue("@Documento", datosUsuario["Documento"]);
+                cmd.Parameters.AddWithValue("@EmailUsuario", datosUsuario["EmailUsuario"]);
+                cmd.Parameters.AddWithValue("@TelefonoUsuario", datosUsuario["TelefonoUsuario"]);
+                cmd.Parameters.AddWithValue("@RolUsuario", datosUsuario["RolUsuario"]);
+                cmd.Parameters.AddWithValue("@EstadoUsuario", datosUsuario["EstadoUsuario"]);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+            return false;
+        }
+
+        //Cambiar contraseña
+        public static Boolean ChangePassword(Dictionary<String, Object> datosUsuario)
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("ChangePassword", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", datosUsuario["IdUsuario"]);
+                cmd.Parameters.AddWithValue("@Password", datosUsuario["Password"]);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+            return false;
+        }
+
+        // Obtener información de usuario por Id
+        public static Dictionary<String, Object> GetUserById(int UserId)
+        {
+            Dictionary<String, Object> userInfo = new Dictionary<String, Object>();
+
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("GetUsersById", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@UserId", UserId);
+
+                MySqlDataReader rd = cmd.ExecuteReader();
+
+                if (rd.Read())
+                {
+                    userInfo = new Dictionary<String, Object>
+                    {
+                        { "Id", int.Parse(rd.GetString("Id")) },
+                        { "NombreUsuario", rd.GetString("NombreUsuario") },
+                        { "ApellidoUsuario", rd.GetString("ApellidoUsuario") },
+                        { "Documento", rd.GetString("Documento")},
+                        { "Email", rd.GetString("Email") },
+                        { "Telefono", rd.GetString("Telefono") },
+                        { "Rol", rd.GetString("Rol") },
+                        { "IdEstado", int.Parse(rd.GetString("IdEstado")) }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return userInfo;
         }
     }
 }

@@ -4,7 +4,7 @@
     var Usuarios = ViewBag.Usuarios;
 }
 
-<div class="row">
+<div class="header-page row">
     <div class="col-md-18">
         <h2>Usuarios.</h2>
         <div class="btn-group">
@@ -15,8 +15,7 @@
     </div>
 </div>
 
-<br><br>
-
+<div class="row blank_space"></div>
 <table id="table-dinamic" class="table table-striped" style="width:100%">
     <thead>
         <tr>
@@ -54,7 +53,7 @@
 	        	</td>
                 <td>
                 	<div class="btn-group btn-group-justified">
-			            <a href='/User/Update/@Html.Raw(user["Id"])' class="btn btn-sm btn-info " title="Modificar">
+			            <a href='/User/Update?userId=@Html.Raw(user["Id"])' class="btn btn-sm btn-info " title="Modificar">
 			                <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
 			            </a>
 			            <a href="#"  id='@Html.Raw(user["Id"])' class="deleteUserBtn btn btn-sm btn-danger " title="Eliminar">

@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Registro de usuarios.";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Roles = ViewBag.Roles;
+    var Estados = ViewBag.Estados;
+
+
+    var Usuario = ViewBag.Usuario;
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Modificar usuario.</h2>
+        <div class="btn-group">
+            <a href="javascript:history.back()" class="btn btn-info">
+                <i class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i> Regresar.
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="#" autocomplete="off" method="POST" id="form-updateUser">
+	<input type="hidden" id="IdUsuario" name="IdUsuario" value='@Html.Raw(Usuario["Id"])'>
+    <h6>Campos requeridos *</h6>
+    <span class="error-message" style="display:none"></span>
+    <span class="success-message" style="display:none"></span>
+
+    <ul class="form-group-container">
+        <li>
+            <div class="form-group">
+                <label for="NombreUsuario" class="required-label control-label">Nombre:</label>
+                <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario" value='@Html.Raw(Usuario["NombreUsuario"])'>
+            </div>
+            <div class="form-group">
+                <label for="ApellidoUsuario" class="required-label control-label">Apellidos:</label>
+                <input type="text" class="form-control" id="ApellidoUsuario" name="ApellidoUsuario"  value='@Html.Raw(Usuario["ApellidoUsuario"])'>
+            </div>
+            <div class="form-group">
+                <label for="Documento" class="required-label control-label">Documento:</label>
+                <input type="text" class="form-control" id="Documento" name="Documento" onkeydown="validateNumber(this)"  value='@Html.Raw(Usuario["Documento"])'>
+            </div>
+            <div class="form-group">
+                <label for="EmailUsuario" class="required-label control-label">Correo electrónico:</label>
+                <input type="text" emailVal="true" class="form-control" id="EmailUsuario" name="EmailUsuario" value='@Html.Raw(Usuario["Email"])'>
+            </div>
+        </li>
+        <li>
+            <div class="form-group">
+                <label for="TelefonoUsuario" class="control-label">Teléfono:</label>
+                <input type="text" class="form-control" id="TelefonoUsuario" name="TelefonoUsuario" onkeydown="validateNumber(this)"  value='@Html.Raw(Usuario["Telefono"])'>
+            </div>
+            <div class="form-group">
+                <label for="RolUsuario" class="required-label control-label">Perfil:</label>
+                <select name="RolUsuario" id="RolUsuario" class="form-control" >
+                    <option value="no-value" hidden>Seleccione un valor.</option>
+                    @foreach(var rol in Roles)
+                    {
+                    	var selected = "";
+                    	if(int.Parse(Usuario["Rol"].ToString()) == int.Parse(rol["Id"].ToString())){
+							selected = "selected";
+                    	}
+
+                        <option value='@Html.Raw(rol["Id"])' @Html.Raw(selected)>@Html.Raw(rol["Nombre"])</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="EstadoUsuario" class="required-label control-label">Estado:</label>
+                 <select name="EstadoUsuario" id="EstadoUsuario" class="form-control" >
+                    <option value="no-value" hidden>Seleccione un valor.</option>
+                    @foreach(var stat in Estados)
+                    {
+                    	var selected = "";
+                    	if(int.Parse(Usuario["IdEstado"].ToString()) == int.Parse(stat["Id"].ToString())){
+							selected = "selected";
+                    	}
+
+                        <option value='@Html.Raw(stat["Id"])' @Html.Raw(selected)>@Html.Raw(stat["Nombre"])</option>
+                    }
+                </select>
+            </div>                     	
+        </li>
+    </ul>
+    <div class="btn-group"> 
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></i> Guardar
+        </button>
+    </div>
+</form>
+

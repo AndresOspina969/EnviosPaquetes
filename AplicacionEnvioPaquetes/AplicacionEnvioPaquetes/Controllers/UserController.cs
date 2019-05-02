@@ -67,6 +67,50 @@ namespace AplicacionEnvioPaquetes.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Update(String userId)
+        {
+            if (Session["USER_DATA"] != null)
+            {
+                Dictionary<String, Object> user_data = (Dictionary<String, Object>)Session["USER_DATA"];
+                if (!bool.Parse(user_data["IsAuth"].ToString()))
+                    return Redirect("~/Home/Index/");
+                else
+                    if (!user_data["RolName"].ToString().Equals("Administrador"))
+                    return Redirect("~/Home/Index/");
+            }
+            else
+            {
+                return Redirect("~/Home/Index/");
+            }
+
+            ViewBag.Usuario = Usuarios.GetUserById(int.Parse(userId));
+            ViewBag.Roles = Usuarios.GetUserRoles();
+            ViewBag.Estados = Usuarios.GetStatusList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUser(String data)
+        {
+            Dictionary<String, Object> response = new Dictionary<String, Object>();
+            Dictionary<String, Object> datos = new Dictionary<String, Object>();
+            var result = new JavaScriptSerializer().Deserialize<dynamic>(data);
+
+            foreach (var obj in result)
+            {
+                datos.Add(obj["name"], obj["value"]);
+            }
+            bool resp = Usuarios.UpdateUser(datos);
+             
+            if (resp)
+                response.Add("success", "true");
+            else
+                response.Add("error", "No se ha podido modificar el usuario.");
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult SignUp(String data)
         {
@@ -85,6 +129,52 @@ namespace AplicacionEnvioPaquetes.Controllers
             bool resp = Usuarios.InsertUser(datos);
 
             if(resp)
+                response.Add("success", "true");
+            else
+                response.Add("error", "No se ha podido guardar el usuario.");
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(String data)
+        {
+            Dictionary<String, Object> response = new Dictionary<String, Object>();
+            Dictionary<String, Object> datos = new Dictionary<String, Object>();
+            var result = new JavaScriptSerializer().Deserialize<dynamic>(data);
+
+            foreach (var obj in result)
+            {
+                datos.Add(obj["name"], obj["value"]);
+            }
+
+            Dictionary<String, Object> user_data = (Dictionary<String, Object>) Session["USER_DATA"];
+            Dictionary<String, Object> userData = Usuarios.GetInfoUserSession(int.Parse(user_data["IdUsuario"].ToString()));
+
+            // Validar contraseña actual
+            if (Security.Encriptar(datos["ContrasenaActual"].ToString(), userData["HashKey"].ToString()) != userData["Password"].ToString())
+            {
+                response.Add("error", "La contraseña actual no coincide con la contraseña del usuario.");
+                return Json(response, JsonRequestBehavior.AllowGet);
+            }
+
+            //Validar que contraseña nueva sea diferente a la actual
+            if (Security.Encriptar(datos["NuevaContrasena"].ToString(), userData["HashKey"].ToString()) == userData["Password"].ToString())
+            {
+                response.Add("error", "La nueva contraseña es igual a la actual.");
+                return Json(response, JsonRequestBehavior.AllowGet);
+            }
+
+            bool resp = Usuarios.ChangePassword(datos);
+
+            if (resp)
                 response.Add("success", "true");
             else
                 response.Add("error", "No se ha podido guardar el usuario.");
