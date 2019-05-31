@@ -79,6 +79,38 @@ namespace Datos
             return usr;
         }
 
+        public static ArrayList GetDeliveryUser()
+        {
+            var usrList = new ArrayList();
+
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("GetDeliveryUser", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+                MySqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    var usr = new Dictionary<String, Object>
+                    {
+                        { "Id", int.Parse(rd.GetString("Id")) },
+                        { "NombreUsuario", rd.GetString("NombreUsuario") }
+                    };
+
+                    usrList.Add(usr);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return usrList;
+        }
+
         //Obtener listado de todos los usuarios registrados
         public static ArrayList GetListUsers(int idUser)
         {
@@ -279,6 +311,28 @@ namespace Datos
             return false;
         }
 
+        //Eliminar usuario
+        public static Boolean DeleteUser(int IdUser)
+        {
+            try
+            {
+                Conexion con = new Conexion();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("DeleteUser", con.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@IdUsuario", IdUser);
+
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return false;
+        }
+
         //Cambiar contraseña
         public static Boolean ChangePassword(Dictionary<String, Object> datosUsuario)
         {
@@ -290,7 +344,8 @@ namespace Datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@IdUsuario", datosUsuario["IdUsuario"]);
-                cmd.Parameters.AddWithValue("@Password", datosUsuario["Password"]);
+                cmd.Parameters.AddWithValue("@PasswordUser", datosUsuario["PasswordUser"]);
+                cmd.Parameters.AddWithValue("@HashKey", datosUsuario["HashKey"]);
 
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;

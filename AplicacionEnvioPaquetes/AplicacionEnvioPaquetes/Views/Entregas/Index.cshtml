@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Pendientes = ViewBag.Pendientes;
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Entregas pendientes.</h2>
+    </div>
+</div>
+<div class="row blank_space"></div>
+<table id="table-dinamic" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Nombre Remitente</th>
+            <th>Nombre Destinatario</th>
+            <th>Descripción Envío</th>
+            <th>Origen - Destino</th>
+            <th>Fecha registro</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var envio in Pendientes)
+        {
+        	<tr>
+        		<td>@Html.Raw(envio["NombreRemitente"])</td>
+        		<td>@Html.Raw(envio["NombreDestinatario"])</td>
+        		<td>@Html.Raw(envio["Descripcion"])</td>
+        		<td>@Html.Raw(envio["CiudadOrigenDestino"])</td>
+        		<td>@Html.Raw(envio["Fecha_Registro"])</td>
+        		<td>
+    				<a href="#"  id='@Html.Raw(envio["IdPaquete"])' class="btnEntrega btn btn-sm btn-success">
+		                <i class="glyphicon glyphicon-ok" aria-hidden="true"> </i> Entregado
+		            </a>
+        		</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal-container modal-confirm" style="display:none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Entrega de paquete.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+        </div>
+        <div class="modal-content-box">
+            <div class="modal_content">
+                <span class="error-message" style="display:none"></span>
+                <span class="success-message" style="display:none"></span>
+                <span>Confirmación de entrega.</span>
+            </div>
+            <div class="modal-buttons btn-group"> 
+                <button class="btn btn-success btnAceptarEntrega" idConfirm="0">
+                    <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Aceptar
+                </button>
+                <button class="btn btn-danger cerrarModal">
+                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

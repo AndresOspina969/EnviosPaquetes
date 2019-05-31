@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "Registro de envíos.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Tarifas = ViewBag.Tarifas;
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Registro de envíos.</h2>
+       <div class="btn-group">
+            <a href="javascript:history.back()" class="btn btn-info">
+                <i class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i> Regresar.
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row blank_space"></div>
+
+<form action="#" autocomplete="off" method="POST" id="form-newEnvio">
+    <h6>Campos requeridos *</h6>
+    <span class="error-message" style="display:none"></span>
+    <span class="success-message" style="display:none"></span>
+
+    <ul class="form-group-container">
+        <li>
+            <div class="form-group form-group-whit-search">
+                <label for="ClienteRemitente" class="required-label control-label">Remitente:</label>
+                <input type="text" class="form-control" id="ClienteRemitente" disabled>
+                <input type="hidden" name="ClienteRemitente">
+                <a href="#" class="btn btn-info btnSearch" data-origin="ClienteRemitente">
+	                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+	            </a>
+            </div>
+            <div class="form-group">
+                <label for="OrigenDestino" class="required-label control-label">Origen - Destino:</label>
+                <input type="hidden" name="IdTarifa">
+                <select id="OrigenDestinoEnvio" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach (var tarifa in Tarifas)
+                    {
+                        <option value='@Html.Raw(tarifa["Id"])' costoTarifa='@Html.Raw(tarifa["Costo"])'>@Html.Raw(tarifa["CiudadOrigen"]) - @Html.Raw(tarifa["CiudadDestino"])</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Costo" class="control-label">Costo:</label>
+                <input type="text" class="form-control" id="Costo" disabled>
+            </div>
+        </li>
+        <li>
+            <div class="form-group form-group-whit-search">
+                <label for="ClienteDestinatario" class="required-label control-label">Destinatario:</label>
+                <input type="text" class="form-control" id="ClienteDestinatario" disabled>
+                <input type="hidden" name="ClienteDestinatario">
+                <a href="#" class="btn btn-info btnSearch" data-origin="ClienteDestinatario">
+	                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+	            </a>
+            </div>
+            <div class="form-group">
+                <label for="Descripcion" class="required-label control-label">Descripción:</label>
+                <textarea class="form-control" id="Descripcion" name="Descripcion"></textarea>
+            </div>
+        </li>
+    </ul>
+    <div class="btn-group"> 
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></i> Guardar
+        </button>
+    </div>
+</form>
+
+<!-- Modal con listado de clientes -->
+<div class="modal-container modal-select-client"  style="display:none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Listado de clientes.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+            <div class="btn-group">
+            <a href="#" class="btn btn-success" id="showWindowsCreateClient">
+                <i class="glyphicon glyphicon-add" aria-hidden="true"></i> Nuevo cliente.
+            </a>
+        </div>
+        </div>
+        <div class="modal-content-box">
+        	<div class="modal_content">
+                <table class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id Cliente</th>
+                            <th>Nombres Cliente</th>
+                            <th>Documento Cliente</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-container modal-create-client" style="display:none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Registrar cliente.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+        </div>
+        <div class="modal-content-box modal-form">
+        	<div class="modal_content">
+                <form action="#" autocomplete="off" method="POST" id="form-createCliente">
+                	<h6>Campos requeridos *</h6>
+				    <span class="error-message" style="display:none"></span>
+				    <span class="success-message" style="display:none"></span>
+
+				    <ul class="form-group-container">
+				    	<li>
+				            <div class="form-group">
+				                <label for="NombreCliente" class="required-label control-label">Nombres:</label>
+				                <input type="text" class="form-control" id="NombreCliente" name="NombreCliente" >
+				            </div>
+				            <div class="form-group">
+				                <label for="Documento" class="required-label control-label">Documento:</label>
+				                <input type="text" class="form-control" id="Documento" name="Documento" onkeydown="validateNumber(this)">
+				            </div>
+				            <div class="form-group">
+				                <label for="DireccionCliente" class="required-label control-label">Dirección:</label>
+				                <input type="text" emailVal="true" class="form-control" id="DireccionCliente" name="DireccionCliente">
+				            </div>
+				        </li>
+				        <li>
+				            <div class="form-group">
+				                <label for="ApellidosCliente" class="required-label control-label">Apellidos:</label>
+				                <input type="text" class="form-control" id="ApellidosCliente" name="ApellidosCliente">
+				            </div>
+				            <div class="form-group">
+				                <label for="TelefonoCliente" class="control-label">Teléfono:</label>
+				                <input type="text" class="form-control" id="TelefonoCliente" name="TelefonoCliente" onkeydown="validateNumber(this)">
+				            </div>
+				        </li>
+				    </ul>				    		    
+                </form>
+            </div>
+            <div class="modal-buttons btn-group"> 
+                <button class="btn btn-success btnSaveClient">
+                    <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Guardar
+                </button>
+                <button class="btn btn-danger cerrarModal">
+                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Cancelar
+                </button>
+            </div>	
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Paquete = ViewBag.Paquete;
+    var Tarifas = ViewBag.Tarifas;
+    var Estados = ViewBag.Estados;
+    var Mensajeros = ViewBag.Mensajeros;
+    var costo = "";
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Modificar envío.</h2>
+       <div class="btn-group">
+            <a href="javascript:history.back()" class="btn btn-info">
+                <i class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i> Regresar.
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row blank_space"></div>
+
+<form action="#" autocomplete="off" method="POST" id="form-updateEnvio">
+    <h6>Campos requeridos *</h6>
+    <span class="error-message" style="display:none"></span>
+    <span class="success-message" style="display:none"></span>
+
+    <input type="hidden" name="IdEnvio" value='@Html.Raw(Paquete["Id"].ToString())'>
+    <ul class="form-group-container">
+        <li>
+            <div class="form-group">
+                <label for="ClienteRemitente" class="control-label">Remitente:</label>
+                <input type="text" class="form-control" id="ClienteRemitente" disabled value='@Html.Raw(Paquete["NombreRemitente"]) - @Html.Raw(Paquete["DocumentoRemitente"])'>
+            </div>
+            <div class="form-group">
+                <label for="OrigenDestino" class="required-label control-label">Origen - Destino:</label>
+                <select id="OrigenDestinoEnvio" name="Tarifa"  class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach (var tarifa in Tarifas)
+                    {
+                    	var selectedTar = "";
+                    	if(int.Parse(Paquete["IdTarifa"].ToString()) == int.Parse(tarifa["Id"].ToString())){
+							selectedTar = "selected";
+							costo = tarifa["Costo"].ToString();
+                    	}
+                        <option value='@Html.Raw(tarifa["Id"])' costoTarifa='@Html.Raw(tarifa["Costo"])' @Html.Raw(selectedTar)>@Html.Raw(tarifa["CiudadOrigen"]) - @Html.Raw(tarifa["CiudadDestino"])</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Costo" class="control-label">Costo:</label>
+                <input type="text" class="form-control" id="Costo" disabled value='$@Html.Raw(costo)'>
+            </div>
+            <div class="form-group">
+                <label for="EstadoPaquete" class="required-label control-label">Estado de paquete:</label>
+                <select id="EstadoPaquete-Update" name="EstadoPaquete" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach (var estado in Estados)
+                    {
+                    	var selectedEst = "";
+                    	if(int.Parse(Paquete["IdEstado"].ToString()) == int.Parse(estado["Id"].ToString())){
+							selectedEst = "selected";
+                    	}
+                        <option value='@Html.Raw(estado["Id"])' @Html.Raw(selectedEst)>@Html.Raw(estado["NombresEstado"])</option>
+                    }
+                </select>
+            </div>
+        </li>
+        <li>
+            <div class="form-group">
+                <label for="ClienteDestinatario" class="control-label">Destinatario:</label>
+                <input type="text" class="form-control" id="ClienteDestinatario" disabled  value='@Html.Raw(Paquete["NombreDestinatario"]) - @Html.Raw(Paquete["DocumentoDestinatario"])'>
+            </div>
+            <div class="form-group">
+                <label for="Descripcion" class="required-label control-label">Descripción:</label>
+                <textarea class="form-control" id="Descripcion" name="Descripcion">@Html.Raw(Paquete["Descripcion"])</textarea>
+            </div>
+            @{
+            	var visibilityDelivery = ""; 
+            	var classRequired = "";
+            }
+            @if(int.Parse(Paquete["IdEstado"].ToString())  != 3){
+            	visibilityDelivery = "display:none";
+        	}else{
+	        	classRequired = "required-label";
+	        }
+
+			<div class="form-group" id="contentMensajero" style="@Html.Raw(visibilityDelivery)">
+                <label for="UsuarioMensajero" class='@Html.Raw(classRequired) control-label'>Mensajero:</label>
+                <select id="UsuarioMensajero" name="Mensajero" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach (var usuario in Mensajeros)
+                    {
+                    	var selectedMen = "";
+                    	if(Paquete["IdMensajero"].ToString() == usuario["Id"].ToString()){
+							selectedMen = "selected";
+                    	}
+                        <option value='@Html.Raw(usuario["Id"])' @Html.Raw(selectedMen)>@Html.Raw(usuario["NombreUsuario"])</option>
+                    }
+                </select>
+            </div>
+        </li>
+    </ul>
+    <div class="btn-group"> 
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></i> Guardar
+        </button>
+    </div>
+</form>

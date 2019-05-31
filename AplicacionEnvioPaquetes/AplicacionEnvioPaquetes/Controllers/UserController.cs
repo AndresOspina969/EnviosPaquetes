@@ -159,18 +159,22 @@ namespace AplicacionEnvioPaquetes.Controllers
             Dictionary<String, Object> userData = Usuarios.GetInfoUserSession(int.Parse(user_data["IdUsuario"].ToString()));
 
             // Validar contraseña actual
-            if (Security.Encriptar(datos["ContrasenaActual"].ToString(), userData["HashKey"].ToString()) != userData["Password"].ToString())
+            if (Security.Encriptar(datos["ContrasenaActual"].ToString(), userData["HashKey"].ToString()) != userData["PasswordUser"].ToString())
             {
                 response.Add("error", "La contraseña actual no coincide con la contraseña del usuario.");
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
 
             //Validar que contraseña nueva sea diferente a la actual
-            if (Security.Encriptar(datos["NuevaContrasena"].ToString(), userData["HashKey"].ToString()) == userData["Password"].ToString())
+            if (Security.Encriptar(datos["NuevaContrasena"].ToString(), userData["HashKey"].ToString()) == userData["PasswordUser"].ToString())
             {
                 response.Add("error", "La nueva contraseña es igual a la actual.");
                 return Json(response, JsonRequestBehavior.AllowGet);
             }
+
+            datos["IdUsuario"] = int.Parse(user_data["IdUsuario"].ToString());
+            datos["HashKey"] = Security.GenerateRandomKey();
+            datos["PasswordUser"] = Security.Encriptar(datos["NuevaContrasena"].ToString(), datos["HashKey"].ToString());
 
             bool resp = Usuarios.ChangePassword(datos);
 
@@ -182,5 +186,19 @@ namespace AplicacionEnvioPaquetes.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult DeleteUser(String userId)
+        {
+            Dictionary<String, Object> response = new Dictionary<String, Object>();
+
+            bool resp = Usuarios.DeleteUser(int.Parse(userId));
+
+            if(resp)
+                response.Add("success", "true");
+            else
+                response.Add("error", "No se ha podido eliminar el usuario.");
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
     }
 }

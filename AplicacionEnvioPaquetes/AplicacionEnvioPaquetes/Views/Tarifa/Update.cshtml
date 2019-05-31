@@ -1,0 +1,69 @@
+@{
+    ViewBag.Title = "Modificación de tarifas.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Ciudades = ViewBag.Ciudades;
+    var Tarifa = ViewBag.Tarifa;
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Modificar tarifa.</h2>
+        <div class="btn-group">
+            <a href="javascript:history.back()" class="btn btn-info">
+                <i class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i> Regresar.
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<form action="#" autocomplete="off" method="POST" id="form-updateTarifa">
+    <h6>Campos requeridos *</h6>
+    <span class="error-message" style="display:none"></span>
+    <span class="success-message" style="display:none"></span>
+    <input type="hidden" name="IdTarifa" id="IdTarifa" value='@Html.Raw(Tarifa["Id"])'>
+
+    <ul class="form-group-container">        
+        <li>
+            <div class="form-group">
+                <label for="CiudadOrigen" class="required-label control-label">Ciudad Origen:</label>
+                <select name="CiudadOrigen" id="CiudadOrigen" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach(var ciudad in Ciudades)
+                    {
+                    	var selected = "";
+                    	if(int.Parse(Tarifa["CiudadOrigen"].ToString()) == int.Parse(ciudad["Id"].ToString())){
+							selected = "selected";
+                    	}
+                        <option value='@Html.Raw(ciudad["Id"])' @Html.Raw(selected)>@Html.Raw(ciudad["Nombre"])</option>
+                    }
+                </select>
+            </div>                     
+            <div class="form-group">
+                <label for="ValorTarifa" class="required-label control-label">Valor Tarifa:</label>
+                <input type="text" class="form-control" id="ValorTarifa" name="ValorTarifa"  onkeydown="validateNumber(this)" value='@Html.Raw(Tarifa["ValorTarifa"])'>
+            </div>
+        </li>
+        <li>
+        	<div class="form-group">
+                <label for="CiudadDestino" class="required-label control-label">Ciudad Destino:</label>
+                <select name="CiudadDestino" id="CiudadDestino" class="form-control" >
+                    <option value="no-value" hidden selected>Seleccione un valor.</option>
+                    @foreach(var ciudad in Ciudades)
+                    {
+                    	var selected = "";
+                    	if(int.Parse(Tarifa["CiudadDestino"].ToString()) == int.Parse(ciudad["Id"].ToString())){
+							selected = "selected";
+                    	}
+                        <option value='@Html.Raw(ciudad["Id"])' @Html.Raw(selected)>@Html.Raw(ciudad["Nombre"])</option>
+                    }
+                </select>
+            </div> 
+        </li>
+    </ul>
+    <div class="btn-group"> 
+        <button type="submit" class="btn btn-success">
+            <i class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></i> Guardar
+        </button>
+    </div>
+</form>

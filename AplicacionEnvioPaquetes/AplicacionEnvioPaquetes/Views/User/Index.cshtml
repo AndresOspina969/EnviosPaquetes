@@ -33,7 +33,7 @@
         	<tr>
         		<td>@Html.Raw(user["NombreUsuario"])</td>
         		<td>@Html.Raw(user["Documento"])</td>
-        		<td>@Html.Raw(user["Email"])</td>
+        		<td class="emailColumn">@Html.Raw(user["Email"])</td>
         		<td>@Html.Raw(user["Rol"])</td>
         		<td>
         			@{        var Style = "";
@@ -65,3 +65,29 @@
         }
     </tbody>
 </table>
+
+
+<!-- Modal para eliminación -->
+<div class="modal-container modal-delete" style="display:none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Eliminar usuario.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+        </div>
+        <div class="modal-content-box">
+            <div class="modal_content">
+                <span class="error-message" style="display:none"></span>
+                <span class="success-message" style="display:none"></span>
+                <span>¿Realmente desea eliminar este usuario?</span>
+            </div>
+            <div class="modal-buttons btn-group"> 
+                <button class="btn btn-success btnAceptar" idDataDelete="0">
+                    <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Aceptar
+                </button>
+                <button class="btn btn-danger cerrarModal">
+                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

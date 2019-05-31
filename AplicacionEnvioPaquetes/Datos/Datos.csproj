@@ -60,6 +60,7 @@
     <Compile Include="Paquetes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />
+    <Compile Include="Tarifas.cs" />
     <Compile Include="Usuarios.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

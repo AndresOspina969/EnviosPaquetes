@@ -156,8 +156,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EntregasController.cs" />
+    <Compile Include="Controllers\EnviosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaquetesController.cs" />
+    <Compile Include="Controllers\TarifaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +217,13 @@
     <Content Include="Views\User\New.cshtml" />
     <Content Include="Views\User\Update.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\Tarifa\Index.cshtml" />
+    <Content Include="Views\Tarifa\New.cshtml" />
+    <Content Include="Views\Tarifa\Update.cshtml" />
+    <Content Include="Views\Envios\Index.cshtml" />
+    <Content Include="Views\Envios\New.cshtml" />
+    <Content Include="Views\Envios\Update.cshtml" />
+    <Content Include="Views\Entregas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

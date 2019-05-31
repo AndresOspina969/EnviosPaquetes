@@ -8,6 +8,27 @@ body{
 	margin-top: 30px;
 }
 /* --------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+} 
+/* --------------------------- */
+
 .login-page{
 	position: absolute;
 	top: 0;
@@ -214,10 +235,33 @@ body{
 	height: 15px !important;
 	text-overflow: ellipsis !important;
 	white-space: nowrap !important;
+}
+.table tr .emailColumn
+{
 	overflow: hidden !important;
 }
 .table tr td{
 	max-width: 190px;
+}
+.table tr td .btn-group{
+	max-width: 90px;
+	margin: 0 auto;
+	position: relative;
+	
+}
+.table tr td .btn-group a:hover:after{
+	content: attr(title);
+	position: absolute;
+	background-color: rgba(0,0,0,.65);
+	color: #fff;
+	top: -1px;
+	left: -200%;
+	width: 80px;
+	padding: 5px 4px 6px 4px;
+	text-align: center;
+	z-index: 99999;
+	border-radius: 3px;
+	box-shadow: 2px 4px 5px #9c9c9c;
 }
 /* ------------------------------------- */
 .form-group-container {
@@ -233,8 +277,18 @@ body{
 	width: 100% !important;
 }
 .form-group-container li .form-group .form-control{
-	width: 100% !important;
+	width: 100%;
 	max-width: 420px;
+	resize: none;
+}
+.form-group-whit-search label{
+	display: block;
+}
+.form-group-whit-search .form-control
+{
+	width: 280px !important;
+	max-width: 280px;
+	display: inline-block;
 }
 .form-group-container li:nth-child(odd){
 	float: left;
@@ -266,7 +320,7 @@ form h6{
 	right: 0;
 	background-color: #F7B733;
 	z-index: 99999;
-	padding: 5px 15px 10px 16px;
+	padding: 5px 35px 10px 36px;
 }
 .navbar img{
 	width: 60px;
@@ -319,4 +373,85 @@ form h6{
 .footer-content{
 	text-align: center;
 	color: #fff;
+}
+/* Ventana modal */
+.modal-container{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 9999999999;
+	background-color: rgba(0,0,0,.35);
+}
+.modal-container .modal-window
+{
+	position: relative;
+	margin: 60px auto;
+	width: 60%;
+	background-color: #fff;
+	padding: 10px 8px 16px 10px;
+	box-shadow: 3px 5px 8px #494949;
+	border-radius: 4px;
+	overflow: hidden;
+	max-height: 480px;
+}
+.modal-container .modal-window .modal-header{
+	width: 100%;
+	position: relative;
+	
+}
+.modal-container .modal-window .modal-header .closeModalIcon{
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	cursor: pointer;
+	color: #adadad;
+	font-size: 10px;
+}
+.modal-container .modal-window .modal-header .closeModalIcon:hover{
+	color:#0a0a0a;
+}
+.modal-content-box
+{
+	margin-top: 10px;
+	text-align: center;
+	overflow-y: auto;
+	max-height: 320px;
+}
+.modal-form{
+	text-align: left !important;
+}
+.modal_content .list-details
+{
+	width: 90%;
+	margin: 5px auto;
+	max-height: 280px;
+	overflow: auto;
+	text-align: left !important;
+}
+.modal_content .list-details li{
+	display: inline-block;
+	width: 98%;
+	position: relative;
+	padding: 5px 10px 8px 6px;
+	border-bottom: 1px solid #494949;	
+}
+.modal_content .list-details li:last-child{
+	border: none;
+}
+.modal_content .list-details li label{
+	float: left;
+	color: #414141;
+	font-size: 14px;
+	font-family: Verdana;
+}
+.modal_content .list-details li p{
+	float: right;
+	width: 65%;
+	font-size: 12px;
+	text-align: justify;
+}
+.modal-buttons{
+	margin-top: 15px;
 }

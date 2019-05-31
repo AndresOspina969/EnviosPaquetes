@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Envíos.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Envios = ViewBag.Envios;
+}
+
+<div class="header-page row">
+    <div class="col-md-18">
+        <h2>Envios.</h2>
+       <div class="btn-group">
+            <a href="/Envios/New" class="btn btn-success">
+                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Registrar envío.
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row blank_space"></div>
+<table id="table-dinamic" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Nombre Remitente</th>
+            <th>Nombre Destinatario</th>
+            <th>Descripción Envío</th>
+            <th>Fecha registro</th>
+            <th>Estado de envío</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var envio in Envios)
+        {
+        	<tr>
+        		<td>@Html.Raw(envio["NombreRemitente"])</td>
+        		<td>@Html.Raw(envio["NombreDestinatario"])</td>
+        		<td>@Html.Raw(envio["Descripcion"])</td>
+        		<td>@Html.Raw(envio["Fecha_Registro"])</td>
+        		<td>@Html.Raw(envio["Estado"])</td>
+        		<td>
+        			<div class="btn-group btn-group-justified">
+        				<a href="#"  id='@Html.Raw(envio["IdPaquete"])' class="btn-view-details btn btn-sm btn-primary " title="Detalles">
+			                <i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i>
+			            </a>
+			            <a href='/Envios/Update?envioId=@Html.Raw(envio["IdPaquete"])' class="btn btn-sm btn-info " title="Modificar">
+			                <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+			            </a>	
+			            <a href="#"  id='@Html.Raw(envio["IdPaquete"])' class="deleteEnvioBtn btn btn-sm btn-danger " title="Eliminar">
+			                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+			            </a>
+			        </div>
+        		</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Modal para eliminación -->
+<div class="modal-container modal-delete" style="display:none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Eliminar envío.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+        </div>
+        <div class="modal-content-box">
+            <div class="modal_content">
+                <span class="error-message" style="display:none"></span>
+                <span class="success-message" style="display:none"></span>
+                <span>¿Realmente desea eliminar este envío?</span>
+            </div>
+            <div class="modal-buttons btn-group"> 
+                <button class="btn btn-success btnAceptar" idDataDelete="0">
+                    <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Aceptar
+                </button>
+                <button class="btn btn-danger cerrarModal">
+                    <i class="glyphicon glyphicon-remove" aria-hidden="true"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para detalles -->
+<div class="modal-container modal-details" style="display: none">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h3>Detalles de envío.</h3>
+            <span class="closeModalIcon cerrarModal"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> </span>
+        </div>
+        <div class="modal-content-box">
+        	<div class="modal_content">
+                <ul class="list-details">
+                	<li>
+                		<label for="">Remitente:</label>
+                		<p id="View_NombreRemitente"></p>
+                	</li>
+                	<li>
+                		<label for="">Destinatario:</label>
+                		<p id="View_NombreDestinatario"></p>
+                	</li>
+                	<li>
+                		<label for="">Descripción:</label>
+                		<p id="View_Descripcion"></p>
+                	</li>
+                	<li>
+                		<label for="">Ciudad Origen:</label>
+                		<p id="View_CiudadOrigen"></p>
+                	</li>
+                	<li>
+                		<label for="">Ciudad Destino:</label>
+                		<p id="View_CiudadDestino"></p>
+                	</li>
+                	<li>
+                		<label for="">Costo:</label>
+                		<p id="View_Valor"></p>
+                	</li>
+                	<li>
+                		<label for="">Estado:</label>
+                		<p id="View_Estado"></p>
+                	</li>
+                	<li>
+                		<label for="">Mensajero:</label>
+                		<p id="View_Mensajero"></p>
+                	</li>
+                	<li>
+                		<label for="">Fecha de registro:</label>
+                		<p id="View_Fecha_Registro"></p>
+                	</li>
+                	<li>
+                		<label for="">Fecha de entrega:</label>
+                		<p id="View_Fecha_Entrega"></p>
+                	</li>
+                </ul>
+            </div>
+            <div class="modal-buttons btn-group"> 
+                <button class="btn btn-success cerrarModal">
+                    <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
